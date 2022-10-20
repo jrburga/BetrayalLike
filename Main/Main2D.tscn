@@ -1,7 +1,36 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Character/Character2D.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Main/csv_reader.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "tool
+extends Node
+
+export(bool) var _read_csv = false setget _on_read_csv
+export(String, FILE, \"*.csv\") var csv_filename
+
+func _on_read_csv(value):
+	var file = File.new()
+	print('reading csv file: ', csv_filename)
+	if file.file_exists(csv_filename):
+		file.open(csv_filename, file.READ)
+		while !file.eof_reached():
+			var line = file.get_csv_line()
+			
+			print(line)
+		file.close()
+		
+		
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [node name="Main2D" type="Node2D"]
 
@@ -12,5 +41,5 @@ current = true
 position = Vector2( -54, -93 )
 
 [node name="Node" type="Node" parent="."]
-script = ExtResource( 2 )
+script = SubResource( 1 )
 csv_filename = "res://test-sheet-1.csv"
