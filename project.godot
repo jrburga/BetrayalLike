@@ -18,16 +18,22 @@ _global_script_classes=[ {
 "class": "Character3D",
 "language": "GDScript",
 "path": "res://Character/Character3D.gd"
+}, {
+"base": "Spatial",
+"class": "TileMap3D",
+"language": "GDScript",
+"path": "res://Tiles/TileMap3D.gd"
 } ]
 _global_script_class_icons={
 "Character2D": "",
-"Character3D": ""
+"Character3D": "",
+"TileMap3D": ""
 }
 
 [application]
 
 config/name="BetrayalLike"
-run/main_scene="res://Main/Main3D.tscn"
+run/main_scene="res://Prototype/Prototype3D.tscn"
 config/icon="res://icon.png"
 
 [gui]
