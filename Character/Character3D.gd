@@ -49,13 +49,19 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_speed
 	
+	
 	# how to set the velocity of the character when navigating
 	# var nav_direction = ($NavigationAgent.get_next_location() - global_translation).normalized()
 	# v_move = nav_direction * speed
+	v_move = v_move.normalized()
 	
-	v_move = v_move.normalized() * speed
+	if v_move.x != 0 or v_move.z != 0:
+		$CharacterRoot.look_at($CharacterRoot.global_translation + v_move, Vector3.UP)
+		
+	v_move = v_move * speed 
 	velocity.x = v_move.x
 	velocity.z = v_move.z
+	
 	
 	move_and_slide(velocity, Vector3.UP)
 	if is_on_floor():
