@@ -9,7 +9,7 @@ radius = 0.5
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.5
 
-[node name="KinematicBody" type="KinematicBody"]
+[node name="Character3D" type="KinematicBody"]
 script = ExtResource( 1 )
 speed = 5.0
 jump_speed = 5.0

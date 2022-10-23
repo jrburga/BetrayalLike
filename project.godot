@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://Character/Character3D.gd"
 }, {
 "base": "Spatial",
+"class": "Prototype3D",
+"language": "GDScript",
+"path": "res://Prototype/Prototype3D.gd"
+}, {
+"base": "Spatial",
 "class": "TileMap3D",
 "language": "GDScript",
 "path": "res://Tiles/TileMap3D.gd"
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Character2D": "",
 "Character3D": "",
+"Prototype3D": "",
 "TileMap3D": ""
 }
 

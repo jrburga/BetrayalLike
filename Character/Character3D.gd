@@ -1,20 +1,21 @@
 extends KinematicBody
 class_name Character3D
 
-export(NodePath) var target_position_3d = null
 export(float) var speed = 10
 export(bool) var jump_enabled = true
 export(float) var jump_speed = 10
 export(float) var gravity = -10
 
+var target_location = Vector3()
+var has_target_location = false
+
+func set_target_location(location : Vector3):
+	target_location = location
+	has_target_location = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if target_position_3d != null:
-		var target_position = get_node(target_position_3d) as Position3D
-		var location = target_position.global_translation
-		$NavigationAgent.set_target_location(location)
-		print($NavigationAgent.get_final_location())
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -22,10 +23,8 @@ func _ready():
 
 func _process(delta):
 	# example of using navigation to automatically move the character
-	if target_position_3d != null:
-		var target_position = get_node(target_position_3d) as Position3D
-		var location = target_position.global_translation
-		$NavigationAgent.set_target_location(location)
+	if has_target_location:
+		$NavigationAgent.set_target_location(target_location)
 
 var velocity = Vector3()
 var v_gravity = Vector3(0, gravity, 0)
@@ -51,14 +50,20 @@ func _physics_process(delta):
 	
 	
 	# how to set the velocity of the character when navigating
-	# var nav_direction = ($NavigationAgent.get_next_location() - global_translation).normalized()
-	# v_move = nav_direction * speed
-	v_move = v_move.normalized()
 	
+	var delta_target = target_location - global_translation if has_target_location else Vector3()
+	delta_target.y = 0
+	has_target_location = not (delta_target as Vector3).is_equal_approx(Vector3())
+	if has_target_location:
+		var nav_direction = delta_target.normalized()
+		var max_speed = delta_target.length() / delta
+		v_move = nav_direction * min(speed, max_speed)
+	else:
+		v_move = v_move.normalized() * speed
+		
 	if v_move.x != 0 or v_move.z != 0:
 		$CharacterRoot.look_at($CharacterRoot.global_translation + v_move, Vector3.UP)
 		
-	v_move = v_move * speed 
 	velocity.x = v_move.x
 	velocity.z = v_move.z
 	
