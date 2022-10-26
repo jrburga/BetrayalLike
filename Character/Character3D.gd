@@ -23,8 +23,7 @@ func _ready():
 
 func _process(delta):
 	# example of using navigation to automatically move the character
-	if has_target_location:
-		$NavigationAgent.set_target_location(target_location)
+	pass
 
 var velocity = Vector3()
 var v_gravity = Vector3(0, gravity, 0)
@@ -48,8 +47,6 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_speed
 	
-	
-	# how to set the velocity of the character when navigating
 	
 	var delta_target = target_location - global_translation if has_target_location else Vector3()
 	delta_target.y = 0

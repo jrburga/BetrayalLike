@@ -6,9 +6,10 @@ export(bool) var _print_grid_map = false setget _on_print_grid_map
 func _ready():
 	pass
 
-onready var grid_map = get_node("%GridMap") as GridMap
+onready var grid_map = get_node("%Tiles") as GridMap
 onready var camera = get_node("%Camera") as Camera
 onready var character = get_node("%Character3D") as Character3D
+onready var highlight = get_node("%MIHighlight")
 
 func find_grid_map_under_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
@@ -30,6 +31,10 @@ var mouse_button_down = false
 func _physics_process(delta):
 	if Engine.editor_hint:
 		return
+		
+	if !grid_map:
+		highlight.visible = false
+		return
 
 	var was_mouse_button_down = mouse_button_down
 	mouse_button_down = Input.is_mouse_button_pressed(1)
@@ -37,7 +42,7 @@ func _physics_process(delta):
 	var mouse_just_pressed = mouse_button_down and not was_mouse_button_down
 	var result = find_grid_map_under_mouse()
 	
-	var highlight = get_node("%MIHighlight")
+	
 	if result:
 		highlight.visible = true
 		var half_size = grid_map.cell_size / 2
@@ -52,8 +57,6 @@ func _physics_process(delta):
 		var map_pos = grid_map.world_to_map(result.position + Vector3(0, 0.1, 0))
 		var center_pos = grid_map.map_to_world(map_pos.x, map_pos.y, map_pos.z) + half_size
 		center_pos.y = 0
-		
-		print(center_pos)
 		character.set_target_location(center_pos)
 
 func _on_print_grid_map(value):
@@ -63,4 +66,3 @@ func _on_print_grid_map(value):
 	
 	var half_size = grid_map.cell_size / 2
 	var center_pos = grid_map.map_to_world(0, 0, 0) + half_size
-	print(center_pos)
