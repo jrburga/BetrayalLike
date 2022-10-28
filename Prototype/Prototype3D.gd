@@ -6,7 +6,7 @@ export(bool) var _print_grid_map = false setget _on_print_grid_map
 func _ready():
 	pass
 
-onready var grid_map = get_node("%Tiles") as GridMap
+onready var grid_map
 onready var camera = get_node("%Camera") as Camera
 onready var character = get_node("%Character3D") as Character3D
 onready var highlight = get_node("%MIHighlight")
