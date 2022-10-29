@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Models/Tiles/TileBrickA_Small/TileBrickA_Small.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Tiles/Wall/Wall.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Models/Tiles/TileBrickB_Large/TileBrickB_Large.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Models/Tiles/TileBrickB_Small/TileBrickB_Small.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Models/Tiles/TileBrickB_Medium/TileBrickB_Medium.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Models/Tiles/Proto_Block/Proto_Quad.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Models/Tiles/Proto_Block/Proto_Block.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 2, 0.1, 2 )
@@ -61,3 +63,7 @@ shape = SubResource( 9 )
 [node name="tileBrickB_smallgltf" parent="." instance=ExtResource( 9 )]
 
 [node name="tileBrickB_mediumgltf" parent="." instance=ExtResource( 10 )]
+
+[node name="Proto_Block" parent="." instance=ExtResource( 12 )]
+
+[node name="Proto_Quad" parent="." instance=ExtResource( 11 )]
