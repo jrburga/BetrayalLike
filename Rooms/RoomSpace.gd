@@ -18,5 +18,4 @@ func _ready():
 			navigation_position = child
 
 func _on_door_clicked(door : Door):
-	print("door clicked: ", door)
 	emit_signal("door_clicked", door)

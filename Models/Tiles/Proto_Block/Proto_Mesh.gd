@@ -1,5 +1,6 @@
 tool
-extends Spatial
+extends MeshInstance
+class_name ProtoMesh
 
 export(String, "Dark", "Light") var style = "Dark" setget _set_style
 export(int, 1, 13) var variant = 1 setget _set_variant
@@ -8,6 +9,8 @@ func create_texture_path():
 	return "res://Textures/Prototype/%s/texture_%02d.png" % [style, variant]
 
 func find_mesh_instance() -> MeshInstance:
+	if self is MeshInstance:
+		return self
 	for child in get_children():
 		if child is MeshInstance:
 			return child

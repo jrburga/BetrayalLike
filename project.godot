@@ -25,6 +25,16 @@ _global_script_classes=[ {
 "path": "res://Rooms/Door.gd"
 }, {
 "base": "Spatial",
+"class": "MeshMergerTool",
+"language": "GDScript",
+"path": "res://Models/Tiles/Proto_Block/MeshMergerTool.gd"
+}, {
+"base": "MeshInstance",
+"class": "ProtoMesh",
+"language": "GDScript",
+"path": "res://Models/Tiles/Proto_Block/Proto_Mesh.gd"
+}, {
+"base": "Spatial",
 "class": "RoomSpace",
 "language": "GDScript",
 "path": "res://Rooms/RoomSpace.gd"
@@ -43,6 +53,8 @@ _global_script_class_icons={
 "Character2D": "",
 "Character3D": "",
 "Door": "",
+"MeshMergerTool": "",
+"ProtoMesh": "",
 "RoomSpace": "",
 "Rooms": "",
 "TileMap3D": ""
