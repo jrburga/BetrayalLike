@@ -25,14 +25,14 @@ _global_script_classes=[ {
 "path": "res://Rooms/Door.gd"
 }, {
 "base": "Spatial",
-"class": "Prototype3D",
-"language": "GDScript",
-"path": "res://Prototype/Prototype3D.gd"
-}, {
-"base": "Spatial",
 "class": "RoomSpace",
 "language": "GDScript",
 "path": "res://Rooms/RoomSpace.gd"
+}, {
+"base": "Spatial",
+"class": "Rooms",
+"language": "GDScript",
+"path": "res://Prototype/Rooms.gd"
 }, {
 "base": "Spatial",
 "class": "TileMap3D",
@@ -43,8 +43,8 @@ _global_script_class_icons={
 "Character2D": "",
 "Character3D": "",
 "Door": "",
-"Prototype3D": "",
 "RoomSpace": "",
+"Rooms": "",
 "TileMap3D": ""
 }
 

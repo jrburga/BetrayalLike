@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Character/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/CameraThirdPerson.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Prototype/Prototype3D.gd" type="Script" id=5]
 [ext_resource path="res://Rooms/Door_Proto.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Rooms/RoomSpace.gd" type="Script" id=7]
+[ext_resource path="res://Prototype/Rooms.gd" type="Script" id=8]
 
 [sub_resource type="ProceduralSky" id=17]
 ground_bottom_color = Color( 0.294118, 0.294118, 0.294118, 1 )
@@ -60,6 +61,7 @@ mesh = SubResource( 3 )
 material/0 = SubResource( 16 )
 
 [node name="Rooms" type="Spatial" parent="."]
+script = ExtResource( 8 )
 
 [node name="Room_0" type="Spatial" parent="Rooms"]
 script = ExtResource( 7 )
@@ -97,6 +99,7 @@ Destination = NodePath("../../Room")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.32633, 0.36268, 13.3197 )
 
 [node name="Room" type="Spatial" parent="Rooms"]
+script = ExtResource( 7 )
 
 [node name="GridMap" type="GridMap" parent="Rooms/Room"]
 mesh_library = ExtResource( 3 )

@@ -13,6 +13,10 @@ func _ready():
 			child.connect("door_clicked", self, "_on_door_clicked", [child])
 			child.room_origin = self
 			doors.append(child)
+			
+		if child is Position3D:
+			navigation_position = child
 
 func _on_door_clicked(door : Door):
+	print("door clicked: ", door)
 	emit_signal("door_clicked", door)

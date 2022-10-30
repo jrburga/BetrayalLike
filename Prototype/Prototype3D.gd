@@ -1,16 +1,24 @@
 tool
 extends Spatial
-class_name Prototype3D
 
 export(bool) var _print_grid_map = false setget _on_print_grid_map
-func _ready():
-	pass
 
 onready var grid_map : GridMap
+onready var rooms = get_node("Rooms") as Rooms
 onready var camera = get_node("%Camera") as Camera
 onready var character = get_node("%Character3D") as Character3D
 onready var highlight = get_node("%MIHighlight")
 
+
+func _ready():
+	rooms.connect("door_clicked", self, "_on_door_clicked")
+	
+func _on_door_clicked(door : Door):
+	var room_dest = door.room_destination
+	assert(room_dest)
+	var pos = room_dest.navigation_position
+	character.set_target_location(pos.global_translation)
+	
 func find_grid_map_under_mouse():
 	var mouse_position = get_viewport().get_mouse_position()
 	var ray_length = 100
