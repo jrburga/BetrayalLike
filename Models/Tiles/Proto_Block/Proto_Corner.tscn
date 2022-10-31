@@ -3,7 +3,7 @@
 [ext_resource path="res://Textures/Prototype/Light/texture_07.png" type="Texture" id=1]
 [ext_resource path="res://Models/Tiles/Proto_Block/Proto_Mesh.gd" type="Script" id=3]
 
-[sub_resource type="ArrayMesh" id=3]
+[sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
 "aabb": AABB( -4.37114e-08, 0, 0, 2, 2, 2 ),
 "array_data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 64, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 127, 64, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 127, 64, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 64, 0, 0, 0, 60, 0, 0, 0, 64, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 127, 64, 0, 60, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 64, 0, 60, 0, 60, 46, 189, 59, 51, 0, 0, 0, 0, 0, 0, 0, 64, 127, 0, 127, 64, 0, 0, 0, 60, 46, 189, 59, 51, 0, 0, 0, 64, 0, 0, 0, 64, 127, 0, 127, 64, 0, 0, 0, 0, 46, 189, 59, 179, 0, 0, 0, 64, 0, 0, 0, 0, 127, 0, 127, 64, 0, 60, 0, 0, 46, 189, 59, 51, 0, 0, 0, 0, 0, 0, 0, 64, 127, 0, 127, 64, 0, 0, 0, 60, 46, 189, 59, 179, 0, 0, 0, 64, 0, 0, 0, 0, 127, 0, 127, 64, 0, 60, 0, 0, 46, 189, 59, 179, 0, 0, 0, 0, 0, 0, 0, 0, 127, 0, 127, 64, 0, 60, 0, 60 ),
@@ -16,19 +16,21 @@ surfaces/0 = {
 "vertex_count": 12
 }
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 params_cull_mode = 2
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="ConcavePolygonShape" id=5]
+[sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( 0, 0, 0, 0, 2, 0, 2, 2, 0, 0, 0, 0, 2, 2, 0, 2, 0, 0, 0, 0, 2, 0, 2, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0 )
 
 [node name="Proto_Corner" type="MeshInstance"]
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
 script = ExtResource( 3 )
+style = "Light"
+variant = 7
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )

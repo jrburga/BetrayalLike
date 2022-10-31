@@ -16,6 +16,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 1 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 4 )
 script = ExtResource( 2 )
+style = "Light"
+variant = 7
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
