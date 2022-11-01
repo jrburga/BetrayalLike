@@ -34,6 +34,12 @@ func _on_generate_room(value):
 				_create_door(x, 0, z, 2)
 			elif x == width - 1 and z == depth / 2:
 				_create_door(x, 0, z, 3)
+				
+	var position_3d = find_node("Position3D") as Position3D
+	if position_3d:
+		var half_size = grid_map.cell_size / 2
+		half_size.y = 0
+		position_3d.global_translation = grid_map.cell_size * Vector3(width / 2, 0, depth / 2) + half_size
 
 var doors = []
 var navigation_position : Position3D = null
