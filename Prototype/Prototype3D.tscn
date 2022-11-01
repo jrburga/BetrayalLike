@@ -67,6 +67,7 @@ script = ExtResource( 8 )
 script = ExtResource( 7 )
 
 [node name="Door_Proto" parent="Rooms/Room_0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 9 )
 Destination = NodePath("../../Room")
 
 [node name="Position3D" type="Position3D" parent="Rooms/Room_0"]
@@ -90,7 +91,7 @@ script = ExtResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24967, 0.454403, 2.76956 )
 
 [node name="Door_Proto" parent="Rooms/Room" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, 8 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 0, 7 )
 Destination = NodePath("../../Room_0")
 
 [node name="GridMap" type="GridMap" parent="Rooms/Room"]
