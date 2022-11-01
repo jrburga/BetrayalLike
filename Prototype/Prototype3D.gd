@@ -15,7 +15,8 @@ func _ready():
 	
 func _on_door_clicked(door : Door):
 	var room_dest = door.room_destination
-	assert(room_dest)
+	if not room_dest:
+		return
 	var pos = room_dest.navigation_position
 	character.set_target_location(pos.global_translation)
 	

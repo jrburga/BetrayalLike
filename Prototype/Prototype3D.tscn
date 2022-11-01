@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Character/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/CameraThirdPerson.gd" type="Script" id=2]
-[ext_resource path="res://Tiles/ProtoMeshLibrary.tres" type="MeshLibrary" id=3]
+[ext_resource path="res://Rooms/Door.gd" type="Script" id=3]
 [ext_resource path="res://Materials/VS_Border.tres" type="Shader" id=4]
 [ext_resource path="res://Prototype/Prototype3D.gd" type="Script" id=5]
 [ext_resource path="res://Rooms/Door_Proto.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Rooms/RoomSpace.gd" type="Script" id=7]
-[ext_resource path="res://Prototype/Rooms.gd" type="Script" id=8]
+[ext_resource path="res://Rooms/RoomBase.gd" type="Script" id=7]
+[ext_resource path="res://Rooms/Rooms.gd" type="Script" id=8]
+[ext_resource path="res://Rooms/RoomBase.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ProceduralSky" id=17]
 ground_bottom_color = Color( 0.294118, 0.294118, 0.294118, 1 )
@@ -41,7 +42,7 @@ script = ExtResource( 5 )
 
 [node name="Character3D" parent="." instance=ExtResource( 1 )]
 unique_name_in_owner = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.225, 0, 11.98 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.23072, 0, 5.16199 )
 
 [node name="Camera" type="Camera" parent="Character3D"]
 unique_name_in_owner = true
@@ -62,45 +63,54 @@ material/0 = SubResource( 16 )
 
 [node name="Rooms" type="Spatial" parent="."]
 script = ExtResource( 8 )
+room_scene = ExtResource( 9 )
 
-[node name="Room_0" type="Spatial" parent="Rooms"]
+[node name="RoomBase" type="Spatial" parent="Rooms" instance=ExtResource( 9 )]
 script = ExtResource( 7 )
+door_flags = 10
+door_scene = ExtResource( 6 )
 
-[node name="Door_Proto" parent="Rooms/Room_0" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 9 )
-Destination = NodePath("../../Room")
+[node name="Position3D" type="Position3D" parent="Rooms/RoomBase"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5 )
 
-[node name="Position3D" type="Position3D" parent="Rooms/Room_0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.32633, 0.36268, 13.3197 )
+[node name="Door_Proto" type="Spatial" parent="Rooms/RoomBase" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 5 )
+script = ExtResource( 3 )
 
-[node name="GridMap" type="GridMap" parent="Rooms/Room_0"]
-mesh_library = ExtResource( 3 )
-cell_center_y = false
-data = {
-"cells": PoolIntArray( 1, 4, 3, 2, 4, 4, 3, 4, 655360, 4, 4, 4, 5, 4, 4, 6, 4, 1441795, 65537, 4, 2, 65538, 4, 1, 65540, 4, 1, 65541, 4, 1, 65542, 4, 1441794, 1, 5, 1048580, 2, 5, 655360, 3, 5, 655360, 4, 5, 655360, 5, 5, 655360, 6, 5, 1441796, 65537, 5, 1048577, 65542, 5, 1441793, 1, 6, 1048580, 2, 6, 655360, 3, 6, 655360, 4, 6, 655360, 5, 6, 655360, 6, 6, 1441796, 65537, 6, 1048577, 65542, 6, 1441793, 1, 7, 1048580, 2, 7, 655360, 3, 7, 655360, 4, 7, 655360, 5, 7, 655360, 6, 7, 1441796, 65537, 7, 1048577, 65542, 7, 1441793, 1, 8, 1048580, 2, 8, 655360, 3, 8, 655360, 4, 8, 655360, 5, 8, 655360, 6, 8, 1441796, 65537, 8, 1048577, 65542, 8, 1441793, 1, 9, 1048579, 2, 9, 655364, 3, 9, 655364, 4, 9, 655364, 5, 9, 655364, 6, 9, 655363, 65537, 9, 1048578, 65538, 9, 655361, 65539, 9, 655361, 65540, 9, 655361, 65541, 9, 655361, 65542, 9, 655362 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 1, 0 )
-}
+[node name="Door_Proto2" type="Spatial" parent="Rooms/RoomBase" instance=ExtResource( 6 )]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 9, 0, 5 )
+script = ExtResource( 3 )
 
-[node name="Room" type="Spatial" parent="Rooms"]
+[node name="RoomBase2" type="Spatial" parent="Rooms" instance=ExtResource( 9 )]
 script = ExtResource( 7 )
+grid_offset = Vector3( 5, 0, 0 )
+door_flags = 10
+door_scene = ExtResource( 6 )
 
-[node name="Spatial" type="Position3D" parent="Rooms/Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24967, 0.454403, 2.76956 )
+[node name="Position3D" type="Position3D" parent="Rooms/RoomBase2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 5 )
 
-[node name="Door_Proto" parent="Rooms/Room" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 0, 7 )
-Destination = NodePath("../../Room_0")
+[node name="Door_Proto" type="Spatial" parent="Rooms/RoomBase2" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 0, 5 )
+script = ExtResource( 3 )
 
-[node name="GridMap" type="GridMap" parent="Rooms/Room"]
-mesh_library = ExtResource( 3 )
-cell_center_y = false
-data = {
-"cells": PoolIntArray( 1, 0, 1048580, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 1441796, 65537, 0, 1048577, 65542, 0, 1441793, 1, 1, 1048580, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 1441796, 65537, 1, 1048577, 65542, 1, 1441793, 1, 2, 1048580, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 1441796, 65537, 2, 1048577, 65542, 2, 1441793, 1, 3, 1048579, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 655363, 65537, 3, 1048578, 65538, 3, 655361, 65540, 3, 655361, 65541, 3, 655361, 65542, 3, 655362, 1, 65535, 3, 2, 65535, 4, 3, 65535, 4, 4, 65535, 4, 5, 65535, 4, 6, 65535, 1441795, 65537, 65535, 2, 65538, 65535, 1, 65539, 65535, 1, 65540, 65535, 1, 65541, 65535, 1, 65542, 65535, 1441794 )
-}
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 1, 0 )
-}
+[node name="Door_Proto2" type="Spatial" parent="Rooms/RoomBase2" instance=ExtResource( 6 )]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 19, 0, 5 )
+script = ExtResource( 3 )
+
+[node name="RoomBase3" type="Spatial" parent="Rooms" instance=ExtResource( 9 )]
+script = ExtResource( 7 )
+grid_offset = Vector3( 10, 0, 0 )
+door_flags = 10
+door_scene = ExtResource( 6 )
+
+[node name="Position3D" type="Position3D" parent="Rooms/RoomBase3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 5 )
+
+[node name="Door_Proto" type="Spatial" parent="Rooms/RoomBase3" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0, 5 )
+script = ExtResource( 3 )
+
+[node name="Door_Proto2" type="Spatial" parent="Rooms/RoomBase3" instance=ExtResource( 6 )]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 29, 0, 5 )
+script = ExtResource( 3 )
