@@ -29,6 +29,7 @@ export(int) var height = 2
 export(int, FLAGS, "North", "East", "South", "West") var door_flags
 
 export(bool) var _generate_room = false setget _on_generate_room
+export(bool) var _print_tiles = false setget _on_print_tiles
 
 export(PackedScene) var door_scene : PackedScene = null
 
@@ -106,23 +107,45 @@ func generate_room():
 	for x in range(width):
 		for z in range(depth):
 			var cell_pos = Vector3(x, 0, z) + grid_offset
-			grid_map.set_cell_item(cell_pos.x, cell_pos.y, cell_pos.z, 0)
+			
+			var created_door : bool = false
 			if (door_flags & NORTH) and (x == width / 2 and z == 0):
 				var door = _create_door(cell_pos.x, 0, cell_pos.z, 0)
 				doors.append(door)
 				doors_dict[NORTH] = door
+				created_door = true
 			elif (door_flags & EAST) and (x == width - 1 and z == depth / 2):
 				var door = _create_door(cell_pos.x, 0, cell_pos.z, 3)
 				doors.append(door)
 				doors_dict[EAST] = door
+				created_door = true
 			elif (door_flags & SOUTH) and (x == width / 2 and z == depth - 1):
 				var door = _create_door(cell_pos.x, 0, cell_pos.z, 2)
 				doors.append(door)
 				doors_dict[SOUTH] = door
+				created_door = true
 			elif (door_flags & WEST) and (x == 0 and z == depth / 2):
 				var door = _create_door(cell_pos.x, 0, cell_pos.z, 1)
 				doors.append(door)
 				doors_dict[WEST] = door
+				created_door = true
+				
+			if x == 0:
+				if z == 0:
+					grid_map.set_cell_item(cell_pos.x, cell_pos.y, cell_pos.z, 3, 0)
+				elif z == depth:
+					grid_map.set_cell_item(cell_pos.x, cell_pos.y, cell_pos.z, 3, 16)
+				else:
+					pass
+			elif x == width:
+				if z == 0:
+					grid_map.set_cell_item(cell_pos.x, cell_pos.y, cell_pos.z, 3, 22)
+				elif z == depth:
+					grid_map.set_cell_item(cell_pos.x, cell_pos.y, cell_pos.z, 3, 10)
+				else:
+					pass
+			else:
+				grid_map.set_cell_item(cell_pos.x, cell_pos.y, cell_pos.z, 0)
 				
 	var position_3d = find_node("Position3D") as Position3D
 	if not position_3d:
@@ -144,3 +167,18 @@ func _on_generate_room(value):
 		return
 		
 	generate_room()
+	
+func _on_print_tiles(value):
+	if !value:
+		return
+	
+	if !Engine.editor_hint:
+		return
+		
+	grid_map = get_node("GridMap") as GridMap
+	
+	for cell in grid_map.get_used_cells():
+		var item = grid_map.get_cell_item(cell.x, cell.y, cell.z)
+		var orientation = grid_map.get_cell_item_orientation(cell.x, cell.y, cell.z)
+		
+		print("Cell: ", cell, ", ", item, ", ", orientation)

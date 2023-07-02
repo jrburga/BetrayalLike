@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Character/Character3D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/CameraThirdPerson.gd" type="Script" id=2]
-[ext_resource path="res://Rooms/Door.gd" type="Script" id=3]
 [ext_resource path="res://Materials/VS_Border.tres" type="Shader" id=4]
 [ext_resource path="res://Prototype/Prototype3D.gd" type="Script" id=5]
 [ext_resource path="res://Rooms/Door_Proto.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Rooms/RoomBase.gd" type="Script" id=7]
 [ext_resource path="res://Rooms/Rooms.gd" type="Script" id=8]
 [ext_resource path="res://Rooms/RoomBase.tscn" type="PackedScene" id=9]
 
@@ -65,52 +63,40 @@ material/0 = SubResource( 16 )
 script = ExtResource( 8 )
 room_scene = ExtResource( 9 )
 
-[node name="RoomBase" type="Spatial" parent="Rooms" instance=ExtResource( 9 )]
-script = ExtResource( 7 )
+[node name="RoomBase" parent="Rooms" instance=ExtResource( 9 )]
 door_flags = 10
-door_scene = ExtResource( 6 )
 
 [node name="Position3D" type="Position3D" parent="Rooms/RoomBase"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5 )
 
-[node name="Door_Proto" type="Spatial" parent="Rooms/RoomBase" instance=ExtResource( 6 )]
+[node name="Door_Proto" parent="Rooms/RoomBase" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0, 5 )
-script = ExtResource( 3 )
 
-[node name="Door_Proto2" type="Spatial" parent="Rooms/RoomBase" instance=ExtResource( 6 )]
+[node name="Door_Proto2" parent="Rooms/RoomBase" instance=ExtResource( 6 )]
 transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 9, 0, 5 )
-script = ExtResource( 3 )
 
-[node name="RoomBase2" type="Spatial" parent="Rooms" instance=ExtResource( 9 )]
-script = ExtResource( 7 )
+[node name="RoomBase2" parent="Rooms" instance=ExtResource( 9 )]
 grid_offset = Vector3( 5, 0, 0 )
 door_flags = 10
-door_scene = ExtResource( 6 )
 
 [node name="Position3D" type="Position3D" parent="Rooms/RoomBase2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 5 )
 
-[node name="Door_Proto" type="Spatial" parent="Rooms/RoomBase2" instance=ExtResource( 6 )]
+[node name="Door_Proto" parent="Rooms/RoomBase2" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 0, 5 )
-script = ExtResource( 3 )
 
-[node name="Door_Proto2" type="Spatial" parent="Rooms/RoomBase2" instance=ExtResource( 6 )]
+[node name="Door_Proto2" parent="Rooms/RoomBase2" instance=ExtResource( 6 )]
 transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 19, 0, 5 )
-script = ExtResource( 3 )
 
-[node name="RoomBase3" type="Spatial" parent="Rooms" instance=ExtResource( 9 )]
-script = ExtResource( 7 )
+[node name="RoomBase3" parent="Rooms" instance=ExtResource( 9 )]
 grid_offset = Vector3( 10, 0, 0 )
 door_flags = 10
-door_scene = ExtResource( 6 )
 
 [node name="Position3D" type="Position3D" parent="Rooms/RoomBase3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 5 )
 
-[node name="Door_Proto" type="Spatial" parent="Rooms/RoomBase3" instance=ExtResource( 6 )]
+[node name="Door_Proto" parent="Rooms/RoomBase3" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 0, 5 )
-script = ExtResource( 3 )
 
-[node name="Door_Proto2" type="Spatial" parent="Rooms/RoomBase3" instance=ExtResource( 6 )]
+[node name="Door_Proto2" parent="Rooms/RoomBase3" instance=ExtResource( 6 )]
 transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 29, 0, 5 )
-script = ExtResource( 3 )
